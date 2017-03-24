@@ -50,7 +50,7 @@ public class LoginManager {
                          Password jaasConfigValue) throws IOException, LoginException {
         this.cacheKey = jaasConfigValue != null ? jaasConfigValue : loginType;
         String loginContext = loginType.contextName();
-        login = hasKerberos ? new KerberosLogin() : new DefaultLogin();
+        login = new DefaultLogin();
         login.configure(configs, jaasConfig, loginContext);
         login.login();
     }

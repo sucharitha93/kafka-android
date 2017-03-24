@@ -22,7 +22,6 @@ import javax.security.auth.login.Configuration;
 
 import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.security.JaasUtils;
-import org.apache.kafka.common.security.kerberos.KerberosShortNamer;
 import org.apache.kafka.common.security.authenticator.CredentialCache;
 import org.apache.kafka.common.security.authenticator.LoginManager;
 import org.apache.kafka.common.security.authenticator.SaslClientAuthenticator;
@@ -47,7 +46,6 @@ public class SaslChannelBuilder implements ChannelBuilder {
     private LoginManager loginManager;
     private SslFactory sslFactory;
     private Map<String, ?> configs;
-    private KerberosShortNamer kerberosShortNamer;
 
     public SaslChannelBuilder(Mode mode, LoginType loginType, SecurityProtocol securityProtocol,
             String clientSaslMechanism, boolean handshakeRequestEnable, CredentialCache credentialCache) {
@@ -70,18 +68,6 @@ public class SaslChannelBuilder implements ChannelBuilder {
                 hasKerberos = clientSaslMechanism.equals(SaslConfigs.GSSAPI_MECHANISM);
             }
 
-            if (hasKerberos) {
-                String defaultRealm;
-                try {
-                    defaultRealm = JaasUtils.defaultKerberosRealm();
-                } catch (Exception ke) {
-                    defaultRealm = "";
-                }
-                @SuppressWarnings("unchecked")
-                List<String> principalToLocalRules = (List<String>) configs.get(SaslConfigs.SASL_KERBEROS_PRINCIPAL_TO_LOCAL_RULES);
-                if (principalToLocalRules != null)
-                    kerberosShortNamer = KerberosShortNamer.fromUnparsedRules(defaultRealm, principalToLocalRules);
-            }
             this.jaasConfig = JaasUtils.jaasConfig(loginType, configs);
             this.loginManager = LoginManager.acquireLoginManager(loginType, hasKerberos, configs, jaasConfig);
 
@@ -99,13 +85,8 @@ public class SaslChannelBuilder implements ChannelBuilder {
         try {
             SocketChannel socketChannel = (SocketChannel) key.channel();
             TransportLayer transportLayer = buildTransportLayer(id, key, socketChannel);
-            Authenticator authenticator;
-            if (mode == Mode.SERVER)
-                authenticator = new SaslServerAuthenticator(id, jaasConfig, loginManager.subject(), kerberosShortNamer,
-                        socketChannel.socket().getLocalAddress().getHostName(), maxReceiveSize, credentialCache);
-            else
-                authenticator = new SaslClientAuthenticator(id, loginManager.subject(), loginManager.serviceName(),
-                        socketChannel.socket().getInetAddress().getHostName(), clientSaslMechanism, handshakeRequestEnable);
+            Authenticator authenticator = new SaslClientAuthenticator(id, loginManager.subject(), loginManager.serviceName(),
+                    socketChannel.socket().getInetAddress().getHostName(), clientSaslMechanism, handshakeRequestEnable);
             // Both authenticators don't use `PrincipalBuilder`, so we pass `null` for now. Reconsider if this changes.
             authenticator.configure(transportLayer, null, this.configs);
             return new KafkaChannel(id, transportLayer, authenticator, maxReceiveSize);

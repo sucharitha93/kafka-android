@@ -40,7 +40,6 @@ import org.apache.kafka.common.network.ChannelBuilder;
 import org.apache.kafka.common.network.Selector;
 import org.apache.kafka.common.requests.MetadataRequest;
 import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.utils.AppInfoParser;
 import org.apache.kafka.common.utils.Time;
 import org.apache.kafka.common.utils.Utils;
 import org.slf4j.Logger;
@@ -706,7 +705,6 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
                     this.retryBackoffMs);
 
             config.logUnused();
-            AppInfoParser.registerAppInfo(JMX_PREFIX, clientId);
 
             log.debug("Kafka consumer created");
         } catch (Throwable t) {
@@ -1565,7 +1563,6 @@ public class KafkaConsumer<K, V> implements Consumer<K, V> {
         ClientUtils.closeQuietly(client, "consumer network client", firstException);
         ClientUtils.closeQuietly(keyDeserializer, "consumer key deserializer", firstException);
         ClientUtils.closeQuietly(valueDeserializer, "consumer value deserializer", firstException);
-        AppInfoParser.unregisterAppInfo(JMX_PREFIX, clientId);
         log.debug("The Kafka consumer has closed.");
         Throwable exception = firstException.get();
         if (exception != null && !swallowException) {
