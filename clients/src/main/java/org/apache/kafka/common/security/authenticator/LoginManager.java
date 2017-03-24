@@ -32,7 +32,6 @@ import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.config.types.Password;
 import org.apache.kafka.common.network.LoginType;
 import org.apache.kafka.common.security.auth.Login;
-import org.apache.kafka.common.security.kerberos.KerberosLogin;
 
 public class LoginManager {
 
