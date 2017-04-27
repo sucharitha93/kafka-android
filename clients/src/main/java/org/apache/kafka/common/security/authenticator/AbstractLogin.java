@@ -18,16 +18,16 @@
 
 package org.apache.kafka.common.security.authenticator;
 
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
-import javax.security.sasl.RealmCallback;
+import org.apache.harmony.javax.security.auth.login.Configuration;
+import org.apache.harmony.javax.security.auth.login.LoginContext;
+import org.apache.harmony.javax.security.auth.login.LoginException;
+import org.apache.harmony.javax.security.sasl.RealmCallback;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.auth.callback.NameCallback;
+import org.apache.harmony.javax.security.auth.callback.NameCallback;
 import javax.security.auth.callback.PasswordCallback;
 import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.Subject;
+import org.apache.harmony.javax.security.auth.Subject;
 
 import org.apache.kafka.common.security.auth.Login;
 import org.slf4j.Logger;

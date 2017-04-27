@@ -26,9 +26,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.security.auth.login.AppConfigurationEntry;
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.AppConfigurationEntry.LoginModuleControlFlag;
+import org.apache.harmony.javax.security.auth.login.AppConfigurationEntry;
+import org.apache.harmony.javax.security.auth.login.Configuration;
+import org.apache.harmony.javax.security.auth.login.AppConfigurationEntry.LoginModuleControlFlag;
 
 import org.apache.kafka.common.KafkaException;
 import org.apache.kafka.common.config.SaslConfigs;

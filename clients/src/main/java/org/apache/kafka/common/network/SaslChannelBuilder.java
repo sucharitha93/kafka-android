@@ -18,7 +18,7 @@ import java.nio.channels.SocketChannel;
 import java.util.List;
 import java.util.Map;
 
-import javax.security.auth.login.Configuration;
+import org.apache.harmony.javax.security.auth.login.Configuration;
 
 import org.apache.kafka.common.config.SaslConfigs;
 import org.apache.kafka.common.security.JaasUtils;

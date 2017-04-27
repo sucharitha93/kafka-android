@@ -19,8 +19,8 @@
 package org.apache.kafka.common.security.authenticator;
 
 import javax.security.auth.Subject;
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.LoginException;
+import org.apache.harmony.javax.security.auth.login.Configuration;
+import org.apache.harmony.javax.security.auth.login.LoginException;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -20,10 +20,10 @@ package org.apache.kafka.common.security.auth;
 
 import java.util.Map;
 
-import javax.security.auth.Subject;
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.LoginContext;
-import javax.security.auth.login.LoginException;
+import org.apache.harmony.javax.security.auth.Subject;
+import org.apache.harmony.javax.security.auth.login.Configuration;
+import org.apache.harmony.javax.security.auth.login.LoginContext;
+import org.apache.harmony.javax.security.auth.login.LoginException;
 
 /**
  * Login interface for authentication.

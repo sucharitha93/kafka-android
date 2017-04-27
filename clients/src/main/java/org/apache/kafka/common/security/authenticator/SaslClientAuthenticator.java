@@ -44,9 +44,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.Subject;
-import javax.security.sasl.Sasl;
-import javax.security.sasl.SaslClient;
-import javax.security.sasl.SaslException;
+import org.apache.harmony.javax.security.sasl.Sasl;
+import org.apache.harmony.javax.security.sasl.SaslClient;
+import org.apache.harmony.javax.security.sasl.SaslException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
