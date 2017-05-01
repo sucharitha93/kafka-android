@@ -18,7 +18,6 @@ package org.apache.kafka.common.protocol.types;
 
 import java.nio.ByteBuffer;
 
-import org.apache.kafka.common.record.FileRecords;
 import org.apache.kafka.common.record.MemoryRecords;
 import org.apache.kafka.common.record.Records;
 import org.apache.kafka.common.utils.Utils;
@@ -435,8 +434,6 @@ public abstract class Type {
 
         @Override
         public void write(ByteBuffer buffer, Object o) {
-            if (o instanceof FileRecords)
-                throw new IllegalArgumentException("FileRecords must be written to the channel directly");
             MemoryRecords records = (MemoryRecords) o;
             NULLABLE_BYTES.write(buffer, records.buffer().duplicate());
         }

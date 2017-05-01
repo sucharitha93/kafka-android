@@ -16,8 +16,8 @@
  */
 package org.apache.kafka.common.security;
 
-import javax.security.auth.login.Configuration;
-import javax.security.auth.login.AppConfigurationEntry;
+import org.apache.harmony.javax.security.auth.login.Configuration;
+import org.apache.harmony.javax.security.auth.login.AppConfigurationEntry;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;

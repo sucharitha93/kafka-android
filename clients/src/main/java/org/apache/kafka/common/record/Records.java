@@ -27,7 +27,7 @@ import java.nio.channels.GatheringByteChannel;
  * over the shallow records, use {@link #shallowEntries()}; for the deep records, use {@link #deepEntries()}. Note
  * that the deep iterator handles both compressed and non-compressed entries: if the entry is not compressed, the
  * shallow record is returned; otherwise, the shallow record is decompressed and the deep entries are returned.
- * See {@link MemoryRecords} for the in-memory representation and {@link FileRecords} for the on-disk representation.
+ * See {@link MemoryRecords} for the in-memory representation.
  */
 public interface Records {
 

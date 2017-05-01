@@ -24,10 +24,10 @@ import java.util.Arrays;
 import java.util.Map;
 
 import javax.security.auth.callback.CallbackHandler;
-import javax.security.sasl.Sasl;
-import javax.security.sasl.SaslException;
-import javax.security.sasl.SaslServer;
-import javax.security.sasl.SaslServerFactory;
+import org.apache.harmony.javax.security.sasl.Sasl;
+import org.apache.harmony.javax.security.sasl.SaslException;
+import org.apache.harmony.javax.security.sasl.SaslServer;
+import org.apache.harmony.javax.security.sasl.SaslServerFactory;
 
 import org.apache.kafka.common.security.JaasUtils;
 
